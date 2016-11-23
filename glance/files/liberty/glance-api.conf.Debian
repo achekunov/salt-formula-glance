@@ -772,7 +772,7 @@ s3_store_create_bucket_on_put = False
 # If using cephx authentication, this file should
 # include a reference to the right keyring
 # in a client.<USER> section
-rbd_store_ceph_conf = /etc/ceph/ceph.conf
+rbd_store_ceph_conf = /etc/ceph/{{ server.storage.cluster }}.conf
 
 # RADOS user to authenticate as (only applicable if using cephx)
 # If <None>, a default will be chosen based on the client. section
@@ -788,6 +788,7 @@ rbd_store_pool = {{ server.storage.pool }}
 # For best performance, this should be a power of two
 #rbd_store_chunk_size = 8
 rbd_store_chunk_size = {{ server.storage.chunk_size }}
+rbd_store_cluster_name = {{ server.storage.cluster }}
 
 {%- endif %}
 

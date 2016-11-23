@@ -935,12 +935,14 @@ rbd_store_user = {{ server.storage.user }}
 # include a reference to the right keyring in a client.<USER> section
 # (string value)
 #rbd_store_ceph_conf = /etc/ceph/ceph.conf
-rbd_store_ceph_conf = /etc/ceph/ceph.conf
+rbd_store_ceph_conf = /etc/ceph/{{ server.storage.cluster }}.conf
 
 # Timeout value (in seconds) used when connecting to ceph cluster. If
 # value <= 0, no timeout is set and default librados value is used.
 # (integer value)
 #rados_connect_timeout = 0
+rbd_store_cluster_name = {{ server.storage.cluster }}
+
 {%- endif %}
 
 # Info to match when looking for cinder in the service catalog. Format

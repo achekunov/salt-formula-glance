@@ -55,6 +55,17 @@ glance_group:
   - require:
     - pkg: glance_packages
 
+{%- if server.storage.engine == "rbd" %}
+
+{% set ceph_backend_mon_host = pillar['glance']['server']['storage']['ceph_host'] %}
+{% set ceph_backend_mon_port = pillar['glance']['server']['storage']['ceph_port'] %}
+{% set ceph_cluster = pillar['glance']['server']['storage']['cluster'] %}
+{% set ceph_user = pillar['glance']['server']['storage']['user'] %}
+{% set ceph_key = pillar['glance']['server']['storage']['client_glance_key'] %}
+{% include "ceph_backend/init.sls" %}
+
+{%- endif %}
+
 /etc/glance/glance-api-paste.ini:
   file.managed:
   - source: salt://glance/files/{{ server.version }}/glance-api-paste.ini

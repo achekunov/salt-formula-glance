@@ -123,6 +123,9 @@ Ceph integration glance
           pool: images
           chunk_size: 8
           client_glance_key: AQDOavlU6BsSJhAAnpFR906mvdgdfRqLHwu0Uw==
+          cluster: ${_param:ceph_cluster}
+          ceph_host: ${_param:ceph_backend_mon_host}
+          ceph_port: ${_param:ceph_backend_mon_port}
 
 * http://ceph.com/docs/master/rbd/rbd-openstack/
 
